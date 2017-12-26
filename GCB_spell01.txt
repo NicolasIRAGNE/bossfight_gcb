@@ -113,7 +113,7 @@ task TRhythm
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        wave();
+        wave2();
         wait(3);
     }
     wait(50);
@@ -137,7 +137,7 @@ task TRhythm
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        wave();
+        wave2();
         wait(3);
     }
     wait(50);
@@ -161,7 +161,7 @@ task TRhythm
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        wave();
+        wave2();
         wait(3);
     }
     wait(50);
@@ -185,7 +185,7 @@ task TRhythm
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        wave();
+        wave2();
         wait(3);
     }
 }
@@ -195,10 +195,20 @@ function wave()
 {
     ascent(time in 0 .. 360)
     {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7 + frame % 25, DS_BALL_SS_BLUE, 10);
+
+    }
+}
+
+function wave2()
+{
+    ascent(time in 0 .. 360)
+    {
         CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
 
     }
 }
+
 
 
 
