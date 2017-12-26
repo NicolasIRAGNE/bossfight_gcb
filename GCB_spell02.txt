@@ -1,0 +1,208 @@
+#TouhouDanmakufu[Single]
+#ScriptVersion[3] //This is required for ph3 scripts
+#Title["Requiem pour bagnole"]
+#Text["sa pete putin"] 
+#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
+//Load the default shotsheet
+#include "script/default_system/Default_ShotConst.txt"
+#include"script/default_system/Default_Effect.txt"
+
+//----------------------------------------------------
+//Declaring Global Variables
+//The variables declared here can be used throughout the entire script.
+//However, the variables declared here are static. 
+//(They can be changed, but not by themselves as they are not in the main loop)
+//(As execution order cannot be guaranteed, random numbers cannot be used(?))
+//----------------------------------------------------
+let objEnemy; //Enemy object
+let sndSwift1;
+let frame = 0; //Counter for timing enemy movements.(Will keep increasing by one in @MainLoop)
+let img1 = GetCurrentScriptDirectory() ~ "1.png"; //file path to enemy image
+let img2 = GetCurrentScriptDirectory() ~ "2.png"; //file path to enemy image
+let flag_satourne = 0;
+let flag_grosseboul = 0;
+let MAX_LIFE = 3000;
+//----------------------------------------------------
+//Enemy movement
+//----------------------------------------------------
+@Event
+{
+    alternative(GetEventType())
+    case(EV_REQUEST_LIFE)
+    {
+        //The script asks for the enemy's life
+        SetScriptResult(MAX_LIFE); //Setting the enemy's life to 500
+    }
+    case(EV_REQUEST_SPELL_SCORE)
+    {
+        SetScriptResult(30000);//スペルカードボーナスを30000に設定
+    }
+    case(EV_REQUEST_TIMER)
+    {
+        SetScriptResult(60);//時間制限を60秒に設定
+    }
+}
+@Initialize
+{
+
+    //Creating and registering enemy objects
+    sndSwift1 = ObjSound_Create();
+    objEnemy = ObjEnemy_Create(OBJ_ENEMY_BOSS);
+    ObjEnemy_Regist(objEnemy);
+    //Setting the enemy's image
+
+    ObjPrim_SetTexture(objEnemy, img1); 
+        //Setting the above image file as a texture to the enemy object(objEnemy)
+    ObjSprite2D_SetSourceRect(objEnemy, 1, 1, 44, 51); 
+        //Setting the rectangle coordinates in the enemy image to use(Left, Top, Right, Bottom).
+    ObjSprite2D_SetDestCenter(objEnemy); 
+        //Positioning the center of the rectangle(w/texture) at (0, 0) on the stage(top left corner).
+    //Moving to the coordinate (cx, 60) in 60 frames
+    let cx = GetStgFrameWidth() / 2;
+        //defines the variable cx as the horizontal middle of the stage. (Stage width / 2)
+    ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
+    ObjSound_Load(sndSwift1, "resource/sound/switf2.ogg");
+    TFinalize;
+   // MainTask;
+    BossAnim;
+    SaTourne;
+    GrosseBoul;
+}
+function wait(n){loop(n){yield;}}
+function GetCenterX()
+{
+    return GetStgFrameWidth() / 2;
+}
+function GetCenterY()
+{
+    return GetStgFrameHeight() / 2;
+}
+task TFinalize 
+{
+    while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
+    {
+        yield;
+    }
+    let ex = ObjMove_GetX(objEnemy);
+    let ey = ObjMove_GetY(objEnemy);
+    TExplosionA(ex, ey, 10, 0.6);
+    DeleteShotAll(TYPE_ALL, TYPE_ITEM);//敵弾を全て削除    
+    Obj_Delete(objEnemy);
+    SetAutoDeleteObject(true);
+    CloseScript(GetOwnScriptID());
+    return;
+}
+    task MainTask
+    {
+        while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
+        {
+            let angleT = GetAngleToPlayer(objEnemy);
+            if (frame > 80)
+            {
+                CreateShotA1(ObjMove_GetX(objEnemy) + frame % 50, ObjMove_GetY(objEnemy), 1, frame / 1.1 % 360 + 90, DS_BALL_M_RED, 0);
+                CreateShotA1(ObjMove_GetX(objEnemy) - frame % 50, ObjMove_GetY(objEnemy), 1, frame / 1.1 % 360 - 90, DS_BALL_M_RED, 0);
+            }
+            wait(3);
+        }
+    }
+    task SaTourne
+    {
+        let counter = 0;
+        let truc = 0;
+        let flag = 1;
+        while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
+        {
+            if (flag_satourne)
+            {
+                let angleT = GetAngleToPlayer(objEnemy);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 90, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 180, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc - 90, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc, 0.1, 2.5, DS_BALL_S_BLUE, 0);                
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 45, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 135, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc - 45, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc - 135, 0.1, 2.5, DS_BALL_S_BLUE, 0);
+                truc += counter * flag;
+                ObjSound_Play(sndSwift1);
+                if (truc > 360 || truc < 0)
+                {
+                    flag *= -1;
+                }
+                if (truc > 380)
+                {
+                    counter = 0;
+                    truc = 0;
+                    flag = 1;                
+                }
+                counter += flag;
+                }
+            wait(1);
+        }
+
+    } 
+    task PtiteBoul
+    {
+                while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
+            {
+                let angleT = GetAngleToPlayer(objEnemy);
+
+                CreateShotA1(ObjMove_GetX(objEnemy) - 100, 0, 1, angleT, DS_BALL_SS_RED, 0.2);
+                CreateShotA1(ObjMove_GetX(objEnemy) - 50, 0, 1, angleT, DS_BALL_SS_RED, 0.2);
+                CreateShotA1(ObjMove_GetX(objEnemy) + 50, 0, 1, angleT, DS_BALL_SS_RED, 0.2);
+                CreateShotA1(ObjMove_GetX(objEnemy) + 100, 0, 1, angleT, DS_BALL_SS_RED, 0.2);
+                wait(12)
+            }
+    }
+    task BossAnim
+    {
+        let flag = 0;
+        while(!Obj_IsDeleted(objEnemy))
+        {
+                if (flag == 0)
+                {
+                    ObjPrim_SetTexture(objEnemy, img1);
+                    flag = 1; 
+                }
+                else
+                {
+                    ObjPrim_SetTexture(objEnemy, img2);
+                    flag = 0; 
+            }        
+        wait(30);
+        }
+    }
+    task GrosseBoul
+    {
+        while(!Obj_IsDeleted(objEnemy))
+        {
+            if (flag_grosseboul)
+            {
+               let angleT = GetAngleToPlayer(objEnemy);
+               CreateShotA1(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 3, angleT, DS_BALL_L_BLUE, 5);
+               wait(24);
+               CreateShotA1(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 2, angleT, DS_BALL_L_BLUE, 5);
+               wait(24);
+               CreateShotA1(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, angleT, DS_BALL_L_BLUE, 5);
+
+            }
+
+               wait(80);
+        }
+    }
+
+@MainLoop
+{
+        ObjEnemy_SetIntersectionCircleToShot(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 32); 
+    ObjEnemy_SetIntersectionCircleToPlayer(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 24);
+    if (ObjEnemy_GetInfo(objEnemy,INFO_LIFE) < MAX_LIFE - 300)
+    {
+        flag_satourne = 1;
+    }
+    if (ObjEnemy_GetInfo(objEnemy,INFO_LIFE) < MAX_LIFE - 500)
+    {
+        flag_grosseboul = 1;
+    }
+    frame++;
+    yield;
+}
