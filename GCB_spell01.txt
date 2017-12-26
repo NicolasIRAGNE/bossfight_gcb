@@ -53,7 +53,7 @@ let MAX_LIFE = 3000;
         //defines the variable cx as the horizontal middle of the stage. (Stage width / 2)
     ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
     let arc = 36;
-    TShotA;
+    //TShotA;
     TRhythm;
     TFinalize;
 }
@@ -93,259 +93,112 @@ task TRhythm
 {
     wait(70);
     wait(260);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        ascent(time in 0 .. 330)
-        {
-            CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 4) + cos(bite * 86), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-        }
+        wave();
         wait(3);
     }
     wait(50);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        ascent(time in 0 .. 330)
-        {
-            CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * -4) + cos(bite * 86), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-        }
+        wave();
         wait(3);
     }
     wait(50);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        ascent(time in 0 .. 330)
-        {
-            CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * -4) + cos(bite * 86), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-        }
+        wave();
         wait(3);
     }
     wait(50);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(30);
-    ascent(time in 0 .. 330)
-    {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 3), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-
-    }
+    wave();
     wait(20);
     ascent (bite in 0 .. 12)
     {
-        ascent(time in 0 .. 330)
-        {
-            CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * -4) + cos(bite * 86), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 4, DS_BILL_RED, 10);
-        }
+        wave();
         wait(3);
     }
 }
 
+
+function wave()
+{
+    ascent(time in 0 .. 360)
+    {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
+
+    }
+}
 
 
 
