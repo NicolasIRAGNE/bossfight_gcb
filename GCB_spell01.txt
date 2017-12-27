@@ -53,8 +53,9 @@ let MAX_LIFE = 3000;
         //defines the variable cx as the horizontal middle of the stage. (Stage width / 2)
     ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
     let arc = 36;
-    //TShotA;
+    TShotA;
     TRhythm;
+    BossAnim;
     TFinalize;
 }
 
@@ -81,11 +82,11 @@ task TShotA
     while (frame < 70){yield;}
     while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
     {
-        ascent(time in 0 .. 90)
+        ascent(time in 0 .. 60)
         {
-            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 4), ObjMove_GetY(objEnemy)+60*sin(time * 4), 1.2,  time * 4, DS_BALL_SS_RED, 10);
+            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 12), ObjMove_GetY(objEnemy)+60*sin(time * 12), 1.2,  time * 12, DS_BALL_S_RED, 10 +  10 *(time % 2));
         }
-        wait(15);
+        wait(24);
     }
 }
 
@@ -190,13 +191,33 @@ task TRhythm
     }
 }
 
+task BossAnim
+{
+    let flag = 0;
+    while(!Obj_IsDeleted(objEnemy))
+    {
+            if (flag == 0)
+            {
+                ObjPrim_SetTexture(objEnemy, img1);
+                flag = 1; 
+            }
+            else
+            {
+                ObjPrim_SetTexture(objEnemy, img2);
+                flag = 0; 
+        }        
+    wait(30);
+    }
+}
 
 function wave()
 {
     ascent(time in 0 .. 360)
     {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7 + frame % 25, DS_BALL_SS_BLUE, 10);
-
+        if (time %2)
+        {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.3,  time * 7 + frame % 25, DS_BALL_SS_BLUE, 10);
+        }
     }
 }
 
@@ -204,8 +225,10 @@ function wave2()
 {
     ascent(time in 0 .. 360)
     {
-        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
-
+        if (time % 2)
+        {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5) + 8*tan(time), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
+        }
     }
 }
 
