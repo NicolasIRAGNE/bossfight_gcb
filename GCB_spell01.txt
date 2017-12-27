@@ -84,7 +84,7 @@ task TShotA
     {
         ascent(time in 0 .. 60)
         {
-            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 12), ObjMove_GetY(objEnemy)+60*sin(time * 12), 1.2,  time * 12, DS_BALL_S_RED, 10 +  10 *(time % 2));
+            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 12 + frame), ObjMove_GetY(objEnemy)+60*sin(time * 12 + frame), 1.2,  time * 12, DS_BALL_S_RED, 10 +  10 *(time % 2));
         }
         wait(24);
     }
