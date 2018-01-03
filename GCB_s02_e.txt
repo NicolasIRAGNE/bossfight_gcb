@@ -61,6 +61,7 @@ let MAX_LIFE = 3000;
     let cx = GetStgFrameWidth() / 2;
         //defines the variable cx as the horizontal middle of the stage. (Stage width / 2)
     ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
+    ObjEnemy_SetDamageRate(objEnemy, 5, 5);
     ObjSound_Load(sndSwift1, "resource/sound/switf2.ogg");
     TFinalize;
    // MainTask;
@@ -114,6 +115,7 @@ task TFinalize
         {
             if (flag_satourne)
             {
+                ObjEnemy_SetDamageRate(objEnemy, 100, 100);
                 let angleT = GetAngleToPlayer(objEnemy);
                 CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 90, 0.1, 2.5, DS_BALL_S_BLUE, 0);
                 CreateShotA2(ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 1, truc + 180, 0.1, 2.5, DS_BALL_S_BLUE, 0);
@@ -143,7 +145,7 @@ task TFinalize
     } 
     task PtiteBoul
     {
-                while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
+            while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
             {
                 let angleT = GetAngleToPlayer(objEnemy);
 
@@ -195,10 +197,7 @@ task TFinalize
 {
         ObjEnemy_SetIntersectionCircleToShot(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 32); 
     ObjEnemy_SetIntersectionCircleToPlayer(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 24);
-    if (ObjEnemy_GetInfo(objEnemy,INFO_LIFE) < MAX_LIFE - 300)
-    {
-        flag_satourne = 1;
-    }
+    flag_satourne = 1;
     if (ObjEnemy_GetInfo(objEnemy,INFO_LIFE) < MAX_LIFE - 500)
     {
         flag_grosseboul = 1;

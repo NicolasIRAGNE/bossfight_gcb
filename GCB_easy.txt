@@ -1,6 +1,6 @@
 #TouhouDanmakufu[Plural]
 #ScriptVersion[3]
-#Title["The Old god of the vroum vroum"]
+#Title["The Old god of the vroum vroum [EASY]"]
 #Text["On ne l'arrete plus"] 
 #BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
 
@@ -21,8 +21,8 @@ task TPlural
 {
     let dir = GetCurrentScriptDirectory();
     let obj = ObjEnemyBossScene_Create();
-    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_spell01.txt");
-    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_spell02.txt");
+    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s01_e.txt");
+    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s02_e.txt");
     ObjEnemyBossScene_LoadInThread(obj);
     ObjEnemyBossScene_Regist(obj);
         while(!Obj_IsDeleted(obj))

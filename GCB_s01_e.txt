@@ -1,0 +1,260 @@
+#TouhouDanmakufu[Single]
+#ScriptVersion[3] //This is required for ph3 scripts
+#Title["Awakening of the peugeot 308 [EASY]"]
+#Text["Vroum......."] 
+#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
+//Load the default shotsheet
+#include "script/default_system/Default_ShotConst.txt"
+#include"script/default_system/Default_Effect.txt"
+let objEnemy; //Enemy object
+let sndSwift1;
+let frame = 0; //Counter for timing enemy movements.(Will keep increasing by one in @MainLoop)
+let img1 = GetCurrentScriptDirectory() ~ "1.png"; //file path to enemy image
+let img2 = GetCurrentScriptDirectory() ~ "2.png"; //file path to enemy image
+let MAX_LIFE = 3000;
+//----------------------------------------------------
+//Enemy movement
+//----------------------------------------------------
+@Event
+{
+    alternative(GetEventType())
+    case(EV_REQUEST_LIFE)
+    {
+        //The script asks for the enemy's life
+        SetScriptResult(MAX_LIFE); //Setting the enemy's life to 500
+    }
+    case(EV_REQUEST_SPELL_SCORE)
+    {
+        SetScriptResult(30000);//スペルカードボーナスを30000に設定
+    }
+    case(EV_REQUEST_TIMER)
+    {
+        SetScriptResult(60);//時間制限を60秒に設定
+    }
+}
+
+@Initialize
+{
+
+    //Creating and registering enemy objects
+    sndSwift1 = ObjSound_Create();
+    objEnemy = ObjEnemy_Create(OBJ_ENEMY_BOSS);
+    ObjEnemy_Regist(objEnemy);
+    //Setting the enemy's image
+
+    ObjPrim_SetTexture(objEnemy, img1); 
+        //Setting the above image file as a texture to the enemy object(objEnemy)
+    ObjSprite2D_SetSourceRect(objEnemy, 1, 1, 44, 51); 
+        //Setting the rectangle coordinates in the enemy image to use(Left, Top, Right, Bottom).
+    ObjSprite2D_SetDestCenter(objEnemy); 
+        //Positioning the center of the rectangle(w/texture) at (0, 0) on the stage(top left corner).
+    //Moving to the coordinate (cx, 60) in 60 frames
+    let cx = GetStgFrameWidth() / 2;
+        //defines the variable cx as the horizontal middle of the stage. (Stage width / 2)
+    ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
+    ObjEnemy_SetDamageRate(objEnemy, 5, 5);
+    let arc = 36;
+    TShotA;
+    //TShotB;
+    TRhythm;
+    BossAnim;
+    TFinalize;
+}
+
+function wait(n){loop(n){yield;}}
+
+task TFinalize 
+{
+    while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
+    {
+        yield;
+    }
+    let ex = ObjMove_GetX(objEnemy);
+    let ey = ObjMove_GetY(objEnemy);
+    TExplosionA(ex, ey, 10, 0.6);
+    DeleteShotAll(TYPE_ALL, TYPE_ITEM);//敵弾を全て削除    
+    Obj_Delete(objEnemy);
+    SetAutoDeleteObject(true);
+    CloseScript(GetOwnScriptID());
+    return;
+}
+
+task TShotA
+{
+    while (frame < 70){yield;}
+    while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
+    {
+        ascent(time in 0 .. 60)
+        {
+            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 12), ObjMove_GetY(objEnemy)+60*sin(time * 12), 1.2,  time * 12, DS_BALL_S_RED, 10 +  10 *(time % 2));
+        }
+        wait(24);
+    }
+}
+
+task TShotB
+{
+    while (frame < 70){yield;}
+    while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
+    {
+        ascent(time in 0 .. 60)
+        {
+            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos((60-time) * 12 + frame), ObjMove_GetY(objEnemy)+60*sin((60-time) * 12 + frame), 1.2,  (60-time) * 12, DS_BALL_S_RED, 10 +  10 *((60-time) % 2));
+        }
+        wait(24);
+    }
+}
+
+task TRhythm
+{
+    wait(70);
+    wait(260);
+    ObjEnemy_SetDamageRate(objEnemy, 100, 100);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    ascent (bite in 0 .. 12)
+    {
+        wave2();
+        wait(3);
+    }
+    wait(50);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    ascent (bite in 0 .. 12)
+    {
+        wave2();
+        wait(3);
+    }
+    wait(50);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    ascent (bite in 0 .. 12)
+    {
+        wave2();
+        wait(3);
+    }
+    wait(50);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    wave();
+    wait(30);
+    wave();
+    wait(30);
+    wave();
+    wait(20);
+    ascent (bite in 0 .. 12)
+    {
+        wave2();
+        wait(3);
+    }
+}
+
+task BossAnim
+{
+    let flag = 0;
+    while(!Obj_IsDeleted(objEnemy))
+    {
+            if (flag == 0)
+            {
+                ObjPrim_SetTexture(objEnemy, img1);
+                flag = 1; 
+            }
+            else
+            {
+                ObjPrim_SetTexture(objEnemy, img2);
+                flag = 0; 
+        }        
+    wait(30);
+    }
+}
+
+function wave()
+{
+    ascent(time in 0 .. 360)
+    {
+        if (time % 4 == 0)
+        {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.3,  time * 7 + frame % 25, DS_BALL_SS_BLUE, 10);
+        }
+    }
+}
+
+function wave2()
+{
+    ascent(time in 0 .. 360)
+    {
+        if (time % 6 == 0)
+        {
+        CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5) + 8*tan(time), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
+        }
+    }
+}
+
+
+
+
+@MainLoop
+{
+        ObjEnemy_SetIntersectionCircleToShot(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 32); 
+    	ObjEnemy_SetIntersectionCircleToPlayer(objEnemy, ObjMove_GetX(objEnemy), ObjMove_GetY(objEnemy), 24);
+    frame++;
+    yield;
+}

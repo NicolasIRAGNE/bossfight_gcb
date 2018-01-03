@@ -214,7 +214,7 @@ function wave()
 {
     ascent(time in 0 .. 360)
     {
-        if (time)
+        if (time % 2 == 0)
         {
         CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.3,  time * 7 + frame % 25, DS_BALL_SS_BLUE, 10);
         }
@@ -225,7 +225,7 @@ function wave2()
 {
     ascent(time in 0 .. 360)
     {
-        if (time)
+        if (time % 2 == 0)
         {
         CreateShotA1(ObjMove_GetX(objEnemy)+30*cos(time * 5) + 8*tan(time), ObjMove_GetY(objEnemy)+30*sin(time * 4), 1.8,  time * 7, DS_BALL_SS_BLUE, 10);
         }
