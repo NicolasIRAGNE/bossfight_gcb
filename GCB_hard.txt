@@ -21,8 +21,8 @@ task TPlural
 {
     let dir = GetCurrentScriptDirectory();
     let obj = ObjEnemyBossScene_Create();
-    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s01_e.txt");
-    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s02_e.txt");
+    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s01_h.txt");
+    ObjEnemyBossScene_Add(obj, 0, dir ~ "./GCB_s02_h.txt");
     ObjEnemyBossScene_LoadInThread(obj);
     ObjEnemyBossScene_Regist(obj);
         while(!Obj_IsDeleted(obj))

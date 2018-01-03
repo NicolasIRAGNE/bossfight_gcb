@@ -2,7 +2,7 @@
 #ScriptVersion[3] //This is required for ph3 scripts
 #Title["Awakening of the peugeot 308 [NORMAL]"]
 #Text["Vroum......."] 
-#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
+//#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
 //Load the default shotsheet
 #include "script/default_system/Default_ShotConst.txt"
 #include"script/default_system/Default_Effect.txt"

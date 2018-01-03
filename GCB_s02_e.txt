@@ -2,7 +2,6 @@
 #ScriptVersion[3] //This is required for ph3 scripts
 #Title["Requiem pour bagnole"]
 #Text["sa pete putin"] 
-#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
 //Load the default shotsheet
 #include "script/default_system/Default_ShotConst.txt"
 #include"script/default_system/Default_Effect.txt"

@@ -2,7 +2,7 @@
 #ScriptVersion[3] //This is required for ph3 scripts
 #Title["Awakening of the peugeot 308"]
 #Text["Vroum......."] 
-#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
+////#BGM["./TURBOSMIMS - Le Plus Grand Des Camions.mp3"]
 //Load the default shotsheet
 #include "script/default_system/Default_ShotConst.txt"
 #include"script/default_system/Default_Effect.txt"
@@ -54,6 +54,7 @@ let MAX_LIFE = 3000;
     ObjMove_SetDestAtFrame(objEnemy, cx, 60, 60);
     let arc = 36;
     TShotA;
+    TShotB;
     TRhythm;
     BossAnim;
     TFinalize;
@@ -85,6 +86,19 @@ task TShotA
         ascent(time in 0 .. 60)
         {
             CreateShotA1(ObjMove_GetX(objEnemy)+60*cos(time * 12 + frame), ObjMove_GetY(objEnemy)+60*sin(time * 12 + frame), 1.2,  time * 12, DS_BALL_S_RED, 10 +  10 *(time % 2));
+        }
+        wait(24);
+    }
+}
+
+task TShotB
+{
+    while (frame < 70){yield;}
+    while(ObjEnemy_GetInfo(objEnemy, INFO_LIFE) > 0)
+    {
+        ascent(time in 0 .. 60)
+        {
+            CreateShotA1(ObjMove_GetX(objEnemy)+60*cos((60-time) * 12 + frame), ObjMove_GetY(objEnemy)+60*sin((60-time) * 12 + frame), 1.2 + 0.01 * (frame % 100),  (60-time) * 12, DS_BALL_S_RED, 10 +  10 *((60-time) % 2));
         }
         wait(24);
     }
