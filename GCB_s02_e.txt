@@ -110,6 +110,7 @@ task TFinalize
         let counter = 0;
         let truc = 0;
         let flag = 1;
+        wait (80);        
         while(ObjEnemy_GetInfo(objEnemy,INFO_LIFE) > 0)
         {
             if (flag_satourne)
